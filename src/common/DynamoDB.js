@@ -1,6 +1,14 @@
 const AWS = require('aws-sdk');
 
-const ddb = new AWS.DynamoDB.DocumentClient();
+let options = {};
+if (process.env.IS_OFFLINE) {
+  options = {
+    regions: 'localhost',
+    endpoint: 'http://localhost:8000',
+  };
+}
+
+const ddb = new AWS.DynamoDB.DocumentClient(options);
 
 const DynamoDB = {
   // https://dynobase.dev/dynamodb-nodejs/#scan

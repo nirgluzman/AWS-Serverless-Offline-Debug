@@ -1,5 +1,5 @@
 @url = https://ca77wmzxy9.execute-api.us-east-1.amazonaws.com
-
+@url_localhost = http://[::1]:3000
 ###
 GET {{url}}/player-score
 
@@ -32,4 +32,14 @@ DELETE {{url}}/player-score/3e32fe18-1a6a-4542-89ad-0f6a48a387b2
 GET {{url}}/game-scores/tennis
 
 ###
-DELETE http://localhost:4000/player-score/123
+GET {{url_localhost}}/player-score 
+
+###
+POST {{url_localhost}}/player-score
+Content-Type: application/json
+
+{
+    "name": "Idan",
+    "score": 20,
+    "game": "football"
+}
