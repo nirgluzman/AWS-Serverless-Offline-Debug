@@ -20,6 +20,10 @@ provider:
 custom:
   tableName: player-points
 
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
 functions:
   getAllPlayerScore:
     handler: src/functions/getAllPlayerScore.handler
