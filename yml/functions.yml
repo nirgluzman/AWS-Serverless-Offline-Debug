@@ -1,0 +1,36 @@
+getAllPlayerScore:
+  handler: src/functions/getAllPlayerScore.handler
+  events:
+    - httpApi:
+        path: /player-score
+        method: get
+getPlayerScore:
+  handler: src/functions/getPlayerScore.handler
+  events:
+    - httpApi:
+        path: /player-score/{ID}
+        method: get
+createPlayerScore:
+  handler: src/functions/createPlayerScore.handler
+  events:
+    - httpApi:
+        path: /player-score
+        method: post
+updatePlayerScore:
+  handler: src/functions/updatePlayerScore.handler
+  events:
+    - httpApi:
+        path: /player-score/{ID}
+        method: patch
+deletePlayerScore:
+  handler: src/functions/deletePlayerScore.handler
+  events:
+    - httpApi:
+        path: /player-score/{ID}
+        method: delete
+getGameScores:
+  handler: src/functions/getGameScores.handler
+  events:
+    - httpApi:
+        path: /game-scores/{game}
+        method: get

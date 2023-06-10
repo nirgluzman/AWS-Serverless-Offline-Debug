@@ -3,6 +3,9 @@ https://www.youtube.com/@CompleteCoding
 https://www.youtube.com/watch?v=xaBAZm2jfXQ&list=PLmexTtcbIn_gP8bpsUsHfv-58KsKPsGEo&index=37
 https://www.youtube.com/watch?v=ul_85jfM0oo
 
+Breaking serverless.yml into multiple files
+https://www.youtube.com/watch?v=lJIN94XVpD0&list=PLmexTtcbIn_gP8bpsUsHfv-58KsKPsGEo&index=38
+
 GitHub repo:
 git@github.com:nirgluzman/AWS-Serverless-VSCode-Debug.git
 
