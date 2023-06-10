@@ -1,0 +1,32 @@
+@url = https://ca77wmzxy9.execute-api.us-east-1.amazonaws.com
+
+###
+GET {{url}}/player-score
+
+###
+GET {{url}}/player-score/2b90f3d9-20d4-44e8-b71e-6eadf6e044cd
+
+###
+POST {{url}}/player-score
+Content-Type: application/json
+
+{
+    "name": "Idan",
+    "score": 20,
+    "game": "football"
+}
+
+###
+PATCH {{url}}/player-score/2b90f3d9-20d4-44e8-b71e-6eadf6e044cd
+Content-Type: application/json
+
+{
+    "score": 44
+}
+
+
+###
+DELETE {{url}}/player-score/3e32fe18-1a6a-4542-89ad-0f6a48a387b2
+
+###
+GET {{url}}/game-scores/tennis

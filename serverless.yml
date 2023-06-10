@@ -1,0 +1,83 @@
+service: sls-lambda-dynamodb
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  profile: serverlessUser
+  stage: dev
+  environment:
+    tableName: ${self:custom.tableName}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:*
+          Resource: '*'
+
+custom:
+  tableName: player-points
+
+functions:
+  getAllPlayerScore:
+    handler: src/functions/getAllPlayerScore.handler
+    events:
+      - httpApi:
+          path: /player-score
+          method: get
+  getPlayerScore:
+    handler: src/functions/getPlayerScore.handler
+    events:
+      - httpApi:
+          path: /player-score/{ID}
+          method: get
+  createPlayerScore:
+    handler: src/functions/createPlayerScore.handler
+    events:
+      - httpApi:
+          path: /player-score
+          method: post
+  updatePlayerScore:
+    handler: src/functions/updatePlayerScore.handler
+    events:
+      - httpApi:
+          path: /player-score/{ID}
+          method: patch
+  deletePlayerScore:
+    handler: src/functions/deletePlayerScore.handler
+    events:
+      - httpApi:
+          path: /player-score/{ID}
+          method: delete
+  getGameScores:
+    handler: src/functions/getGameScores.handler
+    events:
+      - httpApi:
+          path: /game-scores/{game}
+          method: get
+
+resources:
+  Resources:
+    MyDynamoDBTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tableName}
+        AttributeDefinitions:
+          - AttributeName: ID
+            AttributeType: S
+          - AttributeName: game
+            AttributeType: S
+        KeySchema:
+          - AttributeName: ID
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+        GlobalSecondaryIndexes:
+          - IndexName: game-index
+            KeySchema:
+              - AttributeName: game
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL

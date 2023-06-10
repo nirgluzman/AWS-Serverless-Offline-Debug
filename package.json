@@ -1,0 +1,11 @@
+{
+  "name": "aws-serverless-lambda-dynamodb",
+  "version": "1.0.0",
+  "description": "API Gateway, Lambda & DynamoDB backend",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}
