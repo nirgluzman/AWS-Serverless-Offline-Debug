@@ -1,12 +1,10 @@
-const { v4 } = require('uuid');
+import Responses from '../common/API_Responses.js';
 
-const Responses = require('../common/API_Responses');
-
-const DynamoDB = require('../common/DynamoDB');
+import DynamoDB from '../common/DynamoDB.js';
 
 const tableName = process.env.tableName;
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   console.log('event', event);
 
   const { ID } = event.pathParameters;

@@ -4,11 +4,14 @@ frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs16.x
+  deploymentMethod: direct
+  runtime: nodejs18.x
   profile: serverlessUser
-  stage: dev
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'dev'}
   environment:
     tableName: ${self:custom.tableName}
+    REGION: ${self:provider.region}
   iam:
     role:
       statements:
@@ -18,6 +21,14 @@ provider:
           Resource: '*'
 
 custom:
+  # customDomain:
+  #   domainName: api.gluzman.net
+  #   basePath: ''
+  #   certificateName: '*.gluzman.net'
+  #   stage: ${self:provider.stage}
+  #   createRoute53: true
+  #   createRoute53IPv6Record: false
+
   tableName: player-points
   dynamodb:
     stages:
@@ -29,11 +40,12 @@ custom:
     migration:
       dir: offline/migrations
 
-plugins:
-  - serverless-dynamodb-local
-  - serverless-offline
-
 functions: ${file(yml/functions.yml)}
 
 resources:
   - ${file(yml/dynamodb.yml)}
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+  # - serverless-domain-manager

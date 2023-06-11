@@ -12,7 +12,6 @@ Resources:
         - AttributeName: ID
           KeyType: HASH
       BillingMode: PAY_PER_REQUEST
-
       GlobalSecondaryIndexes:
         - IndexName: game-index
           KeySchema:

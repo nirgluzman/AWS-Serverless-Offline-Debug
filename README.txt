@@ -1,3 +1,6 @@
+GitHub repo:
+git@github.com:nirgluzman/AWS-Serverless-Offline-Debug.git
+
 Source - The Serverless Framework with AWS
 https://www.youtube.com/@CompleteCoding
 
@@ -7,8 +10,9 @@ https://www.youtube.com/watch?v=xaBAZm2jfXQ&list=PLmexTtcbIn_gP8bpsUsHfv-58KsKPs
 Breaking serverless.yml into multiple files
 https://www.youtube.com/watch?v=lJIN94XVpD0&list=PLmexTtcbIn_gP8bpsUsHfv-58KsKPsGEo&index=38
 
-GitHub repo:
-git@github.com:nirgluzman/AWS-Serverless-Offline-Debug.git
+Custom domain name
+https://www.youtube.com/watch?v=Vi6F1wiRZIQ&list=PLmexTtcbIn_gP8bpsUsHfv-58KsKPsGEo&index=40
+serverless-domain-manager, https://www.serverless.com/plugins/serverless-domain-manager
 
 Serverelss Plugins for Offline -> sls offline start
 * Serverless Offline -  emulates Lambda and API Gateway on local machine, https://www.serverless.com/plugins/serverless-offline

@@ -1,10 +1,11 @@
-@url = https://ca77wmzxy9.execute-api.us-east-1.amazonaws.com
+@url = https://r9u8jnwzx6.execute-api.us-east-1.amazonaws.com/dev
+@url_custom_domain = api.gluzman.net
 @url_localhost = http://[::1]:3000
 ###
 GET {{url}}/player-score
 
 ###
-GET {{url}}/player-score/2b90f3d9-20d4-44e8-b71e-6eadf6e044cd
+GET {{url}}/player-score/aa
 
 ###
 POST {{url}}/player-score

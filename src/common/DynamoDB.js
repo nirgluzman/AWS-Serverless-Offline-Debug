@@ -1,47 +1,59 @@
-const AWS = require('aws-sdk');
-
-let options = {};
+let config = {};
 if (process.env.IS_OFFLINE) {
-  options = {
-    regions: 'localhost',
+  config = {
+    region: 'localhost',
     endpoint: 'http://localhost:8000',
+  };
+} else {
+  config = {
+    region: process.env.REGION,
   };
 }
 
-const ddb = new AWS.DynamoDB.DocumentClient(options);
+import {
+  DynamoDBClient,
+  ScanCommand,
+  GetItemCommand,
+  PutItemCommand,
+  UpdateItemCommand,
+  QueryCommand,
+  DeleteItemCommand,
+} from '@aws-sdk/client-dynamodb';
+const client = new DynamoDBClient(config);
 
 const DynamoDB = {
-  // https://dynobase.dev/dynamodb-nodejs/#scan
+  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/scancommand.html
   scan(TableName) {
-    const params = {
+    const input = {
       TableName,
     };
-    return ddb.scan(params).promise();
+    const command = new ScanCommand(input);
+    return client.send(command);
   },
 
-  // https://dynobase.dev/dynamodb-nodejs/#get-item
+  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/getitemcommand.html
   get(TableName, ID) {
-    const params = {
+    const input = {
       TableName,
       Key: { ID },
     };
-    return ddb.get(params).promise();
+    const command = new GetItemCommand(input);
+    return client.send(command);
   },
 
-  // https://dynobase.dev/dynamodb-nodejs/#put-item
-  // https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/example_dynamodb_PutItem_section.html
+  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/putitemcommand.html
   write(TableName, user) {
-    const params = {
+    const input = {
       TableName,
       Item: user,
     };
-    return ddb.put(params).promise();
+    const command = new PutItemCommand(input);
+    return client.send(command);
   },
 
-  // https://dynobase.dev/dynamodb-nodejs/#update-item
-  // https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/example_dynamodb_UpdateItem_section.html
+  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/updateitemcommand.html
   update(TableName, ID, updateKey, updateValue) {
-    const params = {
+    const input = {
       TableName,
       Key: { ID },
       UpdateExpression: `set ${updateKey} = :updateValue`,
@@ -50,12 +62,13 @@ const DynamoDB = {
       },
       ReturnValues: 'ALL_NEW',
     };
-    return ddb.update(params).promise();
+    const command = new UpdateItemCommand(input);
+    return client.send(command);
   },
 
-  // https://dynobase.dev/dynamodb-nodejs/#query-index
+  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/querycommand.html
   query(TableName, index, queryKey, queryValue) {
-    const params = {
+    const input = {
       TableName,
       IndexName: index,
       KeyConditionExpression: `${queryKey} = :hkey`,
@@ -63,18 +76,20 @@ const DynamoDB = {
         ':hkey': queryValue,
       },
     };
-    return ddb.query(params).promise();
+    const command = new QueryCommand(input);
+    return client.send(command);
   },
 
-  // https://dynobase.dev/dynamodb-nodejs/#delete-item
+  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/deleteitemcommand.html
   delete(TableName, ID) {
-    const params = {
+    const input = {
       TableName,
       Key: { ID },
       ReturnValues: 'ALL_OLD',
     };
-    return ddb.delete(params).promise();
+    const command = new DeleteItemCommand(input);
+    return client.send(command);
   },
 };
 
-module.exports = DynamoDB;
+export default DynamoDB;

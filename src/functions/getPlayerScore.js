@@ -1,13 +1,14 @@
-const Responses = require('../common/API_Responses');
+import Responses from '../common/API_Responses.js';
 
-const DynamoDB = require('../common/DynamoDB');
+import DynamoDB from '../common/DynamoDB.js';
 
 const tableName = process.env.tableName;
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   console.log('event', event);
 
   const { ID } = event.pathParameters;
+  console.log('ID', ID);
 
   if (!ID) {
     // failed without an ID

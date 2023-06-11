@@ -1,12 +1,12 @@
-const { v4 } = require('uuid');
+import { v4 as uuid } from 'uuid';
 
-const Responses = require('../common/API_Responses');
+import Responses from '../common/API_Responses.js';
 
-const DynamoDB = require('../common/DynamoDB');
+import DynamoDB from '../common/DynamoDB.js';
 
 const tableName = process.env.tableName;
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   console.log('event', event);
 
   if (!event.hasOwnProperty('body')) {
@@ -14,7 +14,7 @@ exports.handler = async (event) => {
     return Responses._400({ message: 'missing user info in message body' });
   }
 
-  const ID = v4();
+  const ID = uuid();
   const user = JSON.parse(event.body);
   user.ID = ID;
 
