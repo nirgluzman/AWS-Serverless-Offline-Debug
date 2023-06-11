@@ -5,20 +5,20 @@
 GET {{url}}/player-score
 
 ###
-GET {{url}}/player-score/aa
+GET {{url}}/player-score/c95b7d42-be1a-48f3-aedd-85f2f63a87c1
 
 ###
 POST {{url}}/player-score
 Content-Type: application/json
 
 {
-    "name": "Idan",
-    "score": 20,
-    "game": "football"
+    "name": "Nir",
+    "score": 14,
+    "game": "swimming"
 }
 
 ###
-PATCH {{url}}/player-score/2b90f3d9-20d4-44e8-b71e-6eadf6e044cd
+PATCH {{url}}/player-score/c95b7d42-be1a-48f3-aedd-85f2f63a87c1
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 
 
 ###
-DELETE {{url}}/player-score/3e32fe18-1a6a-4542-89ad-0f6a48a387b2
+DELETE {{url}}/player-score/c95b7d42-be1a-48f3-aedd-85f2f63a87c1
 
 ###
 GET {{url}}/game-scores/tennis

@@ -8,7 +8,6 @@ export const handler = async (event) => {
   console.log('event', event);
 
   const { ID } = event.pathParameters;
-  console.log('ID', ID);
 
   if (!ID) {
     // failed without an ID

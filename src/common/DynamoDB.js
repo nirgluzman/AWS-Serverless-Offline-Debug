@@ -10,48 +10,49 @@ if (process.env.IS_OFFLINE) {
   };
 }
 
+// https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GettingStarted.html
+// https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_lib_dynamodb.html
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb'; // ES Modules import
+const client = new DynamoDBClient(config); // DynamoDB client creation
+
 import {
-  DynamoDBClient,
+  DynamoDBDocumentClient,
   ScanCommand,
-  GetItemCommand,
-  PutItemCommand,
-  UpdateItemCommand,
+  GetCommand,
   QueryCommand,
-  DeleteItemCommand,
-} from '@aws-sdk/client-dynamodb';
-const client = new DynamoDBClient(config);
+  PutCommand,
+  UpdateCommand,
+  DeleteCommand,
+} from '@aws-sdk/lib-dynamodb';
+const ddbDocClient = DynamoDBDocumentClient.from(client); // client is DynamoDB client
 
 const DynamoDB = {
-  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/scancommand.html
   scan(TableName) {
     const input = {
       TableName,
     };
     const command = new ScanCommand(input);
-    return client.send(command);
+    return ddbDocClient.send(command);
   },
 
-  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/getitemcommand.html
   get(TableName, ID) {
     const input = {
       TableName,
       Key: { ID },
     };
-    const command = new GetItemCommand(input);
-    return client.send(command);
+    const command = new GetCommand(input);
+    return ddbDocClient.send(command);
   },
 
-  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/putitemcommand.html
   write(TableName, user) {
     const input = {
       TableName,
       Item: user,
     };
-    const command = new PutItemCommand(input);
-    return client.send(command);
+    const command = new PutCommand(input);
+    return ddbDocClient.send(command);
   },
 
-  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/updateitemcommand.html
   update(TableName, ID, updateKey, updateValue) {
     const input = {
       TableName,
@@ -62,11 +63,10 @@ const DynamoDB = {
       },
       ReturnValues: 'ALL_NEW',
     };
-    const command = new UpdateItemCommand(input);
-    return client.send(command);
+    const command = new UpdateCommand(input);
+    return ddbDocClient.send(command);
   },
 
-  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/querycommand.html
   query(TableName, index, queryKey, queryValue) {
     const input = {
       TableName,
@@ -77,18 +77,17 @@ const DynamoDB = {
       },
     };
     const command = new QueryCommand(input);
-    return client.send(command);
+    return ddbDocClient.send(command);
   },
 
-  // https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/classes/deleteitemcommand.html
   delete(TableName, ID) {
     const input = {
       TableName,
       Key: { ID },
       ReturnValues: 'ALL_OLD',
     };
-    const command = new DeleteItemCommand(input);
-    return client.send(command);
+    const command = new DeleteCommand(input);
+    return ddbDocClient.send(command);
   },
 };
 

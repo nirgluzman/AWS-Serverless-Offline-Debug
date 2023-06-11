@@ -20,3 +20,6 @@ Serverelss Plugins for Offline -> sls offline start
 
 Error getting DynamoDb local:
 https://github.com/99x/serverless-dynamodb-local/issues/294
+
+JavaScript ES6/CommonJS syntax
+https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/sdk-example-javascript-syntax.html
