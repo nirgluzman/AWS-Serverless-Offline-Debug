@@ -1,33 +1,33 @@
 @url = https://r9u8jnwzx6.execute-api.us-east-1.amazonaws.com/dev
-@url_custom_domain = api.gluzman.net
-@url_localhost = http://[::1]:3000
+@url_custom_domain = https://api.gluzman.net
+@url_localhost = http://[::1]:3000/dev
 ###
-GET {{url}}/player-score
+GET {{url_custom_domain}}/player-score
 
 ###
-GET {{url}}/player-score/c95b7d42-be1a-48f3-aedd-85f2f63a87c1
+GET {{url_custom_domain}}/player-score/9a69649e-a15f-4634-88ae-2483471dd5a7
 
 ###
-POST {{url}}/player-score
+POST {{url_custom_domain}}/player-score
 Content-Type: application/json
 
 {
-    "name": "Nir",
-    "score": 14,
-    "game": "swimming"
+    "name": "Klaus",
+    "score": 24,
+    "game": "tennis"
 }
 
 ###
-PATCH {{url}}/player-score/c95b7d42-be1a-48f3-aedd-85f2f63a87c1
+PATCH {{url_custom_domain}}/player-score/c868302e-64da-42a9-a211-cd77da9b022d
 Content-Type: application/json
 
 {
-    "score": 44
+    "score": 43
 }
 
 
 ###
-DELETE {{url}}/player-score/c95b7d42-be1a-48f3-aedd-85f2f63a87c1
+DELETE {{url}}/player-score/c868302e-64da-42a9-a211-cd77da9b022d
 
 ###
 GET {{url}}/game-scores/tennis

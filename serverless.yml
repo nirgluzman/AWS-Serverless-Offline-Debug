@@ -21,13 +21,13 @@ provider:
           Resource: '*'
 
 custom:
-  # customDomain:
-  #   domainName: api.gluzman.net
-  #   basePath: ''
-  #   certificateName: '*.gluzman.net'
-  #   stage: ${self:provider.stage}
-  #   createRoute53: true
-  #   createRoute53IPv6Record: false
+  customDomain:
+    domainName: api.gluzman.net
+    basePath: ''
+    certificateName: '*.gluzman.net'
+    stage: ${self:provider.stage}
+    createRoute53: true
+    createRoute53IPv6Record: false
 
   tableName: player-points
   dynamodb:
@@ -48,4 +48,4 @@ resources:
 plugins:
   - serverless-dynamodb-local
   - serverless-offline
-  # - serverless-domain-manager
+  - serverless-domain-manager
