@@ -28,6 +28,8 @@ custom:
     stage: ${self:provider.stage}
     createRoute53: true
     createRoute53IPv6Record: false
+    endpointType: regional
+    apiType: http
 
   tableName: player-points
   dynamodb:

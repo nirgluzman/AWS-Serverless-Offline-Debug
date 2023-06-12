@@ -12,8 +12,8 @@ POST {{url_custom_domain}}/player-score
 Content-Type: application/json
 
 {
-    "name": "Klaus",
-    "score": 24,
+    "name": "Ester",
+    "score": 32,
     "game": "tennis"
 }
 
