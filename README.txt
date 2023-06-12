@@ -10,7 +10,7 @@ https://www.youtube.com/watch?v=xaBAZm2jfXQ&list=PLmexTtcbIn_gP8bpsUsHfv-58KsKPs
 Breaking serverless.yml into multiple files
 https://www.youtube.com/watch?v=lJIN94XVpD0&list=PLmexTtcbIn_gP8bpsUsHfv-58KsKPsGEo&index=38
 
-Custom domain name
+Custom domain name -> sls create_domain
 https://www.youtube.com/watch?v=Vi6F1wiRZIQ&list=PLmexTtcbIn_gP8bpsUsHfv-58KsKPsGEo&index=40
 serverless-domain-manager, https://www.serverless.com/plugins/serverless-domain-manager
 
